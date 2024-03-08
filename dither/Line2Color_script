@@ -1,0 +1,27 @@
+U0 Line2Color(I64 xPos, I64 yPos, I64 yPosEnd, I64 xPosEnd,
+	I64 color1, I64 color2)
+{
+	CDC *dc=DCAlias;
+	DocClear;
+
+	if(yPos==yPosEnd){
+	  dc->color=color1;
+	  GrLine(dc,1+xPos,yPos,xPos+xPosEnd,yPos,2);
+	  dc->color=color2;
+	  GrLine(dc,xPos,yPos,xPos+xPosEnd,yPos,2);
+	} else if(xPos==xPosEnd){
+	  dc->color=color1;
+	  GrLine(dc,xPos,1+yPos,xPos,yPos+yPosEnd,2);
+	  dc->color=color2;
+	  GrLine(dc,xPos,yPos,xPos,yPos+yPosEnd,2);
+	} else{
+	  dc->color=color1;
+	  GrLine(dc,1+xPos,1+yPos,xPos+xPosEnd,yPos+yPosEnd,2);
+	  dc->color=color2;
+	  GrLine(dc,xPos,yPos,xPos+xPosEnd,yPos+yPosEnd,2);
+	}
+	DCDel(dc);
+	PressAKey;
+	DCFill;
+}
+Line2Color(0,0,100,100,BLACK,RED);

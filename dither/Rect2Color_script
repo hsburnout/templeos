@@ -1,0 +1,20 @@
+U0 Rect2Color(I64 xPos, I64 yPos, I64 height, I64 width,
+	I64 color1, I64 color2)
+{
+	CDC *dc=DCAlias;
+	DocClear;
+	I64 i;
+	Bool t=TRUE;
+
+	for(i=0;i<height;i++){
+	  dc->color=color1;
+	  GrLine(dc,t+xPos,i+yPos,width+xPos,i+yPos,2);
+	  dc->color=color2;
+	  GrLine(dc,!t+xPos,i+yPos,width+xPos,i+yPos,2);
+	  t=!t;
+	}
+	DCDel(dc);
+	PressAKey;
+	DCFill;
+}
+Rect2Color(0,0,1000,1000,YELLOW,LTRED);
